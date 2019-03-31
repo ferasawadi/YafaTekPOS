@@ -8,5 +8,5 @@ external libraries can be founded Here with inside the libs Directory.
 
 
 more info will be available soon.
-
+1- Database Schematic is included inside the src Folder
 Thank you
