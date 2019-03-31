@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #23285c;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SmarterPOS.Controller">
+   <top>
+      <ImageView fitHeight="121.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@/images/loginlock.png" />
+         </image>
+      </ImageView>
+   </top>
+   <bottom>
+      <Label prefHeight="28.0" prefWidth="163.0" text="2018 Hinet Smat Solutions" textFill="WHITE" BorderPane.alignment="CENTER" />
+   </bottom>
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <top>
+            <Label alignment="CENTER" prefHeight="44.0" prefWidth="261.0" text="تسجيل الدخول" textFill="WHITE" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="36.0" />
+               </font></Label>
+         </top>
+         <left>
+            <VBox prefHeight="175.0" prefWidth="189.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Region prefHeight="33.0" prefWidth="105.0" />
+                  <Label alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="182.0" text="إسم المستخدم" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@/images/loginuser.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font></Label>
+                  <Region prefHeight="18.0" prefWidth="105.0" />
+                  <Label alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="180.0" text="كلمة السر" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@/images/loginpassword.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Label>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox BorderPane.alignment="CENTER">
+               <children>
+                  <Region prefHeight="34.0" prefWidth="395.0" />
+                  <TextField fx:id="usertext" prefHeight="35.0" prefWidth="242.0" promptText="إسم المستخدم">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+                  <Region prefHeight="19.0" prefWidth="395.0" />
+                  <PasswordField fx:id="passtext" prefHeight="35.0" prefWidth="242.0" promptText="كلمة السر">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font>
+                  </PasswordField>
+               </children>
+            </VBox>
+         </center>
+         <bottom>
+            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#doConnection" prefHeight="32.0" prefWidth="142.0" text="تسجيل الدخول" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+         </bottom>
+         <right>
+            <Label prefHeight="116.0" prefWidth="102.0" BorderPane.alignment="CENTER" />
+         </right>
+      </BorderPane>
+   </center>
+</BorderPane>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: #9de2bf;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SmarterPOS.purchasesController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Close" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Delete" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+   </top>
+   <left>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="121.0" spacing="3.0" style="-fx-background-color: #35b173;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="55.0" prefWidth="120.0" text="معلومات المادة" textFill="#482cd0">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="39.0" prefWidth="108.0" text="باركود">
+               <VBox.margin>
+                  <Insets top="100.0" />
+               </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/images/barcode.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <Label alignment="CENTER" prefHeight="39.0" prefWidth="115.0" text="إسم المادة">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/images/mat_name.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="39.0" prefWidth="101.0" text="السعر">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/images/pricelabel.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <Label alignment="CENTER" prefHeight="39.0" prefWidth="102.0" text="الكمية">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/images/mat_quantity.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <Label alignment="CENTER" prefHeight="39.0" prefWidth="103.0" text="الحسم">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/images/discountlabel.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+         </children></VBox>
+   </left>
+   <center>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="225.0" spacing="10.0" style="-fx-background-color: #89dcb3;" BorderPane.alignment="CENTER">
+         <children>
+            <JFXTextField fx:id="barcode">
+               <VBox.margin>
+                  <Insets top="150.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="UnitNameTB">
+               <font>
+                  <Font size="16.0" />
+               </font></JFXTextField>
+            <JFXTextField fx:id="PriceTB">
+               <font>
+                  <Font name="Arial" size="15.0" />
+               </font></JFXTextField>
+            <JFXTextField fx:id="QtyTB">
+               <font>
+                  <Font name="Arial" size="15.0" />
+               </font></JFXTextField>
+            <JFXTextField fx:id="discountTB">
+               <font>
+                  <Font size="15.0" />
+               </font></JFXTextField>
+         </children></VBox>
+   </center>
+   <right>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="247.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="390.0" fitWidth="247.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/images/purchsaseslabel.png" />
+               </image>
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin></ImageView>
+         </children>
+      </VBox>
+   </right>
+   <bottom>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="71.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0">
+               <children>
+                  <Region prefHeight="50.0" prefWidth="338.0" />
+                  <JFXButton buttonType="RAISED" onAction="#AddPurchace" prefHeight="50.0" prefWidth="150.0" ripplerFill="#0700ff" text="إضافة" />
+                  <JFXButton fx:id="cancelButton" buttonType="RAISED" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#cancelButtonClick" prefHeight="50.0" prefWidth="150.0" ripplerFill="RED" text="إلغاء" />
+               </children>
+            </HBox>
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="600.0">
+               <children>
+                  <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="600.0" text="2018 HiNet SMART SOLUTIONS">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </bottom>
+</BorderPane>
