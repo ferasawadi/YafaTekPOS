@@ -560,7 +560,6 @@ public class MainPanel implements Initializable {
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.get() == ButtonType.YES) {
 			//yesbutton Clicked
-
 			Saveincome();
 		} else {
 			// ... user chose NO or closed the dialog
@@ -613,8 +612,6 @@ public class MainPanel implements Initializable {
 			alert.setContentText("الرجاء التأكد من إدخال جميع بيانات الفاتورة.");
 			alert.showAndWait();
 		}
-
-
 	}
 
 	////////////////////////////////////////////////////////////////
@@ -734,15 +731,7 @@ public class MainPanel implements Initializable {
 			chart.getData().addAll(series2, series4);
 		} else if (st_stockingcheck.isSelected()) {
 			chart.getData().addAll(series6, series66);
-
-
 		}
-
-
-//           chart.setData(series1.getData());
-//       Scene scene  = new Scene(bc,800,600);
-//       bc.getData().addAll(series1);
-
 	}
 
 	// --------------------------Settings Methods ------------
@@ -750,16 +739,12 @@ public class MainPanel implements Initializable {
 	public void settingsGeneralButton() {
 		settingsGeneral.setVisible(true);
 		settingsBackup.setVisible(false);
-
-
 	}
 
 	// ------------------------  Backup Button Click -----------
 	public void settingsBackupButton() {
 		settingsGeneral.setVisible(false);
 		settingsBackup.setVisible(true);
-
-
 	}
 
 	//   ------------------------
@@ -807,13 +792,9 @@ public class MainPanel implements Initializable {
 			alert.setContentText("الرجاء التأكد من إدخال جميع بيانات الفاتورة.");
 			alert.showAndWait();
 		}
-
-
 	}
 
-
 	//Inventory Buttons Click
-
 	public void addMaterialButtonClick() {
 		addMaterialBorder.setVisible(true);
 		showMaterialBorder.setVisible(false);
@@ -821,8 +802,6 @@ public class MainPanel implements Initializable {
 		outMatBorder.setVisible(false);
 //            material_table.getItems().clear();
 		InventorySearchBorderPane.setVisible(false);
-
-
 	}
 
 	public void showMaterialButtonClick() {
@@ -830,7 +809,6 @@ public class MainPanel implements Initializable {
 		addMaterialBorder.setVisible(false);
 		inmatBorder.setVisible(false);
 		outMatBorder.setVisible(false);
-
 	}
 
 	public void inMatButtonClick() {
@@ -843,11 +821,7 @@ public class MainPanel implements Initializable {
 		in_Storage.clear();
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd ");
 		Date date = new Date();
-//                 System.out.println(dateFormat.format(date));
-//                 mat_date_out.setValue(LocalDate.parse(dateFormat.format(date)));
 		mat_date_in.setValue(LocalDate.now());
-//            in_table.getItems().clear();
-
 	}
 
 	public void outMatButtonClick() {
@@ -856,16 +830,10 @@ public class MainPanel implements Initializable {
 		showMaterialBorder.setVisible(false);
 		addMaterialBorder.setVisible(false);
 		InventorySearchBorderPane.setVisible(false);
-
 		Material.autocomplete(mat_name_out);
-
-//        out_table.getItems().clear();
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd ");
 		Date date = new Date();
-//                 System.out.println(dateFormat.format(date));
 		mat_date_out.setValue(LocalDate.now());
-//                 mat_date_in.setValue(LocalDate.parse(dateFormat.format(date)));
-
 	}
 
 	//  ---------------------- Inventory Search Button ------------
@@ -877,8 +845,6 @@ public class MainPanel implements Initializable {
 		InventorySearchBorderPane.setVisible(true);
 		in_Storage.clear();
 		Material.autocomplete(matnamesearch);
-
-
 	}
 
 
@@ -890,7 +856,6 @@ public class MainPanel implements Initializable {
 		autocompletecusromer(ResiptID11);
 		autocompletecusromer(ResiptID111);
 		autocompletecusromer(BuyerName);
-
 		try {
 			welcomeLabel();
 		} catch (Exception e) {
@@ -923,12 +888,10 @@ public class MainPanel implements Initializable {
 			}
 		});
 		Purchasesdata.addListener(new ListChangeListener<PurchaseRecord>() {
-
 			@Override
 			public void onChanged(Change<? extends PurchaseRecord> pChange) {
 				while (pChange.next()) {
 					CalculatePurTotal();
-
 				}
 			}
 		});
@@ -938,7 +901,6 @@ public class MainPanel implements Initializable {
 			public void onChanged(Change<? extends PurchaseRecord> pChange) {
 				while (pChange.next()) {
 					CalculateReSalesTotal();
-
 				}
 			}
 		});
@@ -948,7 +910,6 @@ public class MainPanel implements Initializable {
 			public void onChanged(Change<? extends OrderRecord> pChange) {
 				while (pChange.next()) {
 					CalculateRePurchasesTotal();
-
 				}
 			}
 		});
@@ -1062,10 +1023,8 @@ public class MainPanel implements Initializable {
 				old_row.setPrice(event.getOldValue());
 				int index = data.indexOf(old_row);
 				data.get(index).setPrice(newValue);
-
 				TableOrder.refresh();
 				CalculateResultTotal();
-
 			}
 
 		});
@@ -1074,7 +1033,6 @@ public class MainPanel implements Initializable {
 			public void handle(TableColumn.CellEditEvent<OrderRecord, String> event) {
 				String newValue = event.getNewValue();
 				if (!ISNum(newValue)) {
-
 					OrderRecord old_row = event.getRowValue();
 					old_row.setDiscount(event.getOldValue());
 					int index = data.indexOf(old_row);
@@ -1089,7 +1047,6 @@ public class MainPanel implements Initializable {
 
 				TableOrder.refresh();
 				CalculateResultTotal();
-
 			}
 
 		});
@@ -1116,26 +1073,19 @@ public class MainPanel implements Initializable {
 					newValue = stock + "";
 					event.getRowValue().QTY = newValue;
 				}
-
 				OrderRecord old_row = event.getRowValue();
 				old_row.setQTY(event.getOldValue());
-
 				int index = RePurChases.indexOf(old_row);
 				RePurChases.get(index).setQTY(newValue);
-
 				TableOrder11.refresh();
 				CalculateRePurchasesTotal();
-
-
 			}
-
 		});
 		Price11.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<OrderRecord, String>>() {
 			@Override
 			public void handle(TableColumn.CellEditEvent<OrderRecord, String> event) {
 				String newValue = event.getNewValue();
 				if (!ISNum(newValue)) {
-
 					OrderRecord old_row = event.getRowValue();
 					old_row.setPrice(event.getOldValue());
 					int index = RePurChases.indexOf(old_row);
@@ -1147,19 +1097,15 @@ public class MainPanel implements Initializable {
 				old_row.setPrice(event.getOldValue());
 				int index = RePurChases.indexOf(old_row);
 				RePurChases.get(index).setPrice(newValue);
-
 				TableOrder11.refresh();
 				CalculateRePurchasesTotal();
-
 			}
-
 		});
 		Discount11.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<OrderRecord, String>>() {
 			@Override
 			public void handle(TableColumn.CellEditEvent<OrderRecord, String> event) {
 				String newValue = event.getNewValue();
 				if (!ISNum(newValue)) {
-
 					OrderRecord old_row = event.getRowValue();
 					old_row.setDiscount(event.getOldValue());
 					int index = RePurChases.indexOf(old_row);
@@ -1171,19 +1117,15 @@ public class MainPanel implements Initializable {
 				old_row.setDiscount(event.getOldValue());
 				int index = RePurChases.indexOf(old_row);
 				RePurChases.get(index).setDiscount(newValue);
-
 				TableOrder11.refresh();
 				CalculateRePurchasesTotal();
-
 			}
-
 		});
 		PDiscount.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<PurchaseRecord, String>>() {
 			@Override
 			public void handle(TableColumn.CellEditEvent<PurchaseRecord, String> event) {
 				String newValue = event.getNewValue();
 				if (!ISNum(newValue)) {
-
 					PurchaseRecord old_row = event.getRowValue();
 					old_row.setPDiscount(event.getOldValue());
 					int index = Purchasesdata.indexOf(old_row);
@@ -1195,10 +1137,8 @@ public class MainPanel implements Initializable {
 				old_row.setPDiscount(event.getOldValue());
 				int index = Purchasesdata.indexOf(old_row);
 				Purchasesdata.get(index).setPDiscount(newValue);
-
 				TableOrder2.refresh();
 				CalculatePurTotal();
-
 			}
 
 		});
@@ -1207,7 +1147,6 @@ public class MainPanel implements Initializable {
 			public void handle(TableColumn.CellEditEvent<PurchaseRecord, String> event) {
 				String newValue = event.getNewValue();
 				if (!ISNum(newValue) || newValue.equals("0")) {
-
 					PurchaseRecord old_row = event.getRowValue();
 					old_row.setPQTY(event.getOldValue());
 					int index = Purchasesdata.indexOf(old_row);
@@ -1219,21 +1158,15 @@ public class MainPanel implements Initializable {
 				old_row.setPQTY(event.getOldValue());
 				int index = Purchasesdata.indexOf(old_row);
 				Purchasesdata.get(index).setPQTY(newValue);
-
 				TableOrder2.refresh();
 				CalculatePurTotal();
-
-
 			}
-
 		});
 		PPrice.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<PurchaseRecord, String>>() {
 			@Override
 			public void handle(TableColumn.CellEditEvent<PurchaseRecord, String> event) {
 				String newValue = event.getNewValue();
-
 				if (!ISNum(newValue)) {
-
 					PurchaseRecord old_row = event.getRowValue();
 					old_row.setPPrice(event.getOldValue());
 					int index = Purchasesdata.indexOf(old_row);
@@ -1245,20 +1178,15 @@ public class MainPanel implements Initializable {
 				old_row.setPPrice(event.getOldValue());
 				int index = Purchasesdata.indexOf(old_row);
 				Purchasesdata.get(index).setPPrice(newValue);
-
 				TableOrder2.refresh();
 				CalculatePurTotal();
-
-
 			}
-
 		});
 		Discount1.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<PurchaseRecord, String>>() {
 			@Override
 			public void handle(TableColumn.CellEditEvent<PurchaseRecord, String> event) {
 				String newValue = event.getNewValue();
 				if (!ISNum(newValue)) {
-
 					PurchaseRecord old_row = event.getRowValue();
 					old_row.setPDiscount(event.getOldValue());
 					int index = ReSalesdata.indexOf(old_row);
@@ -1270,19 +1198,15 @@ public class MainPanel implements Initializable {
 				old_row.setPDiscount(event.getOldValue());
 				int index = ReSalesdata.indexOf(old_row);
 				ReSalesdata.get(index).setPDiscount(newValue);
-
 				TableOrder1.refresh();
 				CalculateReSalesTotal();
-
 			}
-
 		});
 		QTY1.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<PurchaseRecord, String>>() {
 			@Override
 			public void handle(TableColumn.CellEditEvent<PurchaseRecord, String> event) {
 				String newValue = event.getNewValue();
 				if (!ISNum(newValue) || newValue.equals("0")) {
-
 					PurchaseRecord old_row = event.getRowValue();
 					old_row.setPQTY(event.getOldValue());
 					int index = ReSalesdata.indexOf(old_row);
@@ -1294,20 +1218,15 @@ public class MainPanel implements Initializable {
 				old_row.setPQTY(event.getOldValue());
 				int index = ReSalesdata.indexOf(old_row);
 				ReSalesdata.get(index).setPQTY(newValue);
-
 				TableOrder1.refresh();
 				CalculateReSalesTotal();
-
-
 			}
-
 		});
 		Price1.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<PurchaseRecord, String>>() {
 			@Override
 			public void handle(TableColumn.CellEditEvent<PurchaseRecord, String> event) {
 				String newValue = event.getNewValue();
 				if (!ISNum(newValue)) {
-
 					PurchaseRecord old_row = event.getRowValue();
 					old_row.setPPrice(event.getOldValue());
 					int index = ReSalesdata.indexOf(old_row);
@@ -1319,11 +1238,8 @@ public class MainPanel implements Initializable {
 				old_row.setPPrice(event.getOldValue());
 				int index = ReSalesdata.indexOf(old_row);
 				ReSalesdata.get(index).setPPrice(newValue);
-
 				TableOrder1.refresh();
 				CalculateReSalesTotal();
-
-
 			}
 
 		});
@@ -1354,10 +1270,7 @@ public class MainPanel implements Initializable {
 		s_date.setCellValueFactory(new PropertyValueFactory<>("s_date"));
 
 //---------------------------------------- search test --------------------
-
 		//------------------------context menu  delete record ---------------------------
-
-
 		searchtraffictable.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
@@ -1367,8 +1280,6 @@ public class MainPanel implements Initializable {
 					contextMenu.getItems().addAll(menuItem1);
 					searchtraffictable.setContextMenu(contextMenu);
 					contextMenu.show(searchtraffictable.getClip(), 80, 140);
-
-//                    System.out.println(menuItem1.getText());
 					menuItem1.setOnAction(new EventHandler<ActionEvent>() {
 						@Override
 						public void handle(ActionEvent event) {
@@ -1377,29 +1288,20 @@ public class MainPanel implements Initializable {
 								Material.alert("Erorr", "An Erorr", "Please Select An Record...");
 							} else {
 								if (trafficSearch.get(0).getS_recipt_type() == "sales") {
-
-//                                    Material.alert("ok","ok","Please Select An Record...");
 									Alert alert = new Alert(AlertType.CONFIRMATION, "", ButtonType.YES, ButtonType.NO);  //new alert object
-//                                    Alert alert = new Alert(AlertType.CONFIRMATION,ButtonType.YES, ButtonType.NO);  //new alert object
 									alert.setTitle("Confirmation");  //warning box title
 									alert.setHeaderText("Delete Confirmation!");// Header
 									alert.setContentText("Are You Sure You Want to Delete This Record?"); //Discription of warning
 									alert.getDialogPane().setPrefSize(400, 200); //sets size of alert box
 									Optional<ButtonType> result = alert.showAndWait();
 									if (result.get() == ButtonType.YES) {
-
 										String id = trafficSearch.get(0).getS_recipid() + "";
 										TrafficSearch.deleteRecord(id, "id_in_box", "input_box");
 										TrafficSearch.deleteRecord(id, "id_in_box", "input_box_hdr");
 										searchtraffictable.getItems().remove(searchtraffictable.getSelectionModel().getSelectedItem());
 										searchtraffictable.refresh();
-
 									}
-
 								} else if (trafficSearch.get(0).getS_recipt_type() == "purchasess") {
-//                                    Material.alert("ok","ok","Please Select An Record...");
-
-//                                    Material.alert("ok","ok","Please Select An Record...");
 									Alert alert = new Alert(AlertType.CONFIRMATION, "", ButtonType.YES, ButtonType.NO);  //new alert object
 									alert.setTitle("Confirmation");  //warning box title
 									alert.setHeaderText("Delete Confirmation!");// Header
@@ -1407,20 +1309,13 @@ public class MainPanel implements Initializable {
 									alert.getDialogPane().setPrefSize(400, 200); //sets size of alert box
 									Optional<ButtonType> result = alert.showAndWait();
 									if (result.get() == ButtonType.YES) {
-
 										String id = trafficSearch.get(0).getS_recipid() + "";
 										TrafficSearch.deleteRecord(id, "id_out_box", "output_box");
 										TrafficSearch.deleteRecord(id, "id_out_box", "output_box_hdr");
 										searchtraffictable.getItems().remove(searchtraffictable.getSelectionModel().getSelectedItem());
 										searchtraffictable.refresh();
-
 									}
-
-
 								} else if (trafficSearch.get(0).getS_recipt_type() == "purchasess_return") {
-//                                    Material.alert("ok","ok","Please Select An Record...");
-
-//                                    Material.alert("ok","ok","Please Select An Record...");
 									Alert alert = new Alert(AlertType.CONFIRMATION, "", ButtonType.YES, ButtonType.NO);  //new alert object
 									alert.setTitle("Confirmation");  //warning box title
 									alert.setHeaderText("Delete Confirmation!");// Header
@@ -1428,15 +1323,12 @@ public class MainPanel implements Initializable {
 									alert.getDialogPane().setPrefSize(400, 200); //sets size of alert box
 									Optional<ButtonType> result = alert.showAndWait();
 									if (result.get() == ButtonType.YES) {
-
 										String id = trafficSearch.get(0).getS_recipid() + "";
 										TrafficSearch.deleteRecord(id, "id_in_box", "input_box");
 										TrafficSearch.deleteRecord(id, "id_in_box", "input_box_hdr");
 										searchtraffictable.getItems().remove(searchtraffictable.getSelectionModel().getSelectedItem());
 										searchtraffictable.refresh();
-
 									}
-
 								} else if (trafficSearch.get(0).getS_recipt_type() == "sales_return") {
 //                                    Material.alert("ok","ok","Please Select An Record...");
 									Alert alert = new Alert(AlertType.CONFIRMATION, "", ButtonType.YES, ButtonType.NO);  //new alert object
@@ -1446,13 +1338,11 @@ public class MainPanel implements Initializable {
 									alert.getDialogPane().setPrefSize(400, 200); //sets size of alert box
 									Optional<ButtonType> result = alert.showAndWait();
 									if (result.get() == ButtonType.YES) {
-
 										String id = trafficSearch.get(0).getS_recipid() + "";
 										TrafficSearch.deleteRecord(id, "id_out_box", "output_box");
 										TrafficSearch.deleteRecord(id, "id_out_box", "output_box_hdr");
 										searchtraffictable.getItems().remove(searchtraffictable.getSelectionModel().getSelectedItem());
 										searchtraffictable.refresh();
-
 									}
 								} else if (trafficSearch.get(0).getS_recipt_type() == "expenses") {
 //                                    Material.alert("ok","ok","Please Select An Record...");
@@ -1463,12 +1353,10 @@ public class MainPanel implements Initializable {
 									alert.getDialogPane().setPrefSize(400, 200); //sets size of alert box
 									Optional<ButtonType> result = alert.showAndWait();
 									if (result.get() == ButtonType.YES) {
-
 										String id = trafficSearch.get(0).getS_recipid() + "";
 										TrafficSearch.deleteRecord(id, "id_sp", "spending");
 										searchtraffictable.getItems().remove(searchtraffictable.getSelectionModel().getSelectedItem());
 										searchtraffictable.refresh();
-
 									}
 								} else if (trafficSearch.get(0).getS_recipt_type() == "incomes") {
 //                                    Material.alert("ok","ok","Please Select An Record...");
@@ -1479,21 +1367,15 @@ public class MainPanel implements Initializable {
 									alert.getDialogPane().setPrefSize(400, 200); //sets size of alert box
 									Optional<ButtonType> result = alert.showAndWait();
 									if (result.get() == ButtonType.YES) {
-
 										String id = trafficSearch.get(0).getS_recipid() + "";
 										TrafficSearch.deleteRecord(id, "id_in", "incomes");
 										searchtraffictable.getItems().remove(searchtraffictable.getSelectionModel().getSelectedItem());
 										searchtraffictable.refresh();
-
 									}
 								}
 							}
-
-
 						}
 					});
-
-
 				} else if ((event.getButton() == MouseButton.PRIMARY)) {
 					if (event.getClickCount() == 2) {
 						ObservableList<TrafficSearch> trafficSearches = searchtraffictable.getSelectionModel().getSelectedItems();
@@ -1535,8 +1417,6 @@ public class MainPanel implements Initializable {
 				}
 			}
 		});
-
-
 //-----------------------------------------------------------
 		material_table.setEditable(true);
 		m_name.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -1548,23 +1428,15 @@ public class MainPanel implements Initializable {
 		all.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-//                sales.setDisable(false);
-//                reciptTypeButt
 				reciptTypeButton.setId(all.getId());
 				reciptTypeButton.setText(all.getId());
-//                 System.out.println(reciptTypeButton.getId());
-
 			}
 		});
 		sales.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-//                reciptTypeButton.
 				reciptTypeButton.setId(sales.getId());
-//                    System.out.println(reciptTypeButton.getId());
 				reciptTypeButton.setText(sales.getId());
-
-
 			}
 		});
 		purchasess.setOnAction(new EventHandler<ActionEvent>() {
@@ -1572,9 +1444,6 @@ public class MainPanel implements Initializable {
 			public void handle(ActionEvent event) {
 				reciptTypeButton.setId(purchasess.getId());
 				reciptTypeButton.setText(purchasess.getId());
-
-//                System.out.println(reciptTypeButton.getId());
-
 			}
 		});
 		purchasess_return.setOnAction(new EventHandler<ActionEvent>() {
@@ -1582,9 +1451,6 @@ public class MainPanel implements Initializable {
 			public void handle(ActionEvent event) {
 				reciptTypeButton.setId(purchasess_return.getId());
 				reciptTypeButton.setText(purchasess_return.getId());
-
-//                System.out.println(reciptTypeButton.getId());
-
 			}
 		});
 		sales_return.setOnAction(new EventHandler<ActionEvent>() {
@@ -1592,9 +1458,6 @@ public class MainPanel implements Initializable {
 			public void handle(ActionEvent event) {
 				reciptTypeButton.setId(sales_return.getId());
 				reciptTypeButton.setText(sales_return.getId());
-
-//                System.out.println(reciptTypeButton.getId());
-
 			}
 		});
 		expenses.setOnAction(new EventHandler<ActionEvent>() {
@@ -1602,7 +1465,6 @@ public class MainPanel implements Initializable {
 			public void handle(ActionEvent event) {
 				reciptTypeButton.setId(expenses.getId());
 				reciptTypeButton.setText(expenses.getId());
-
 			}
 		});
 		incomes.setOnAction(new EventHandler<ActionEvent>() {
@@ -1610,25 +1472,18 @@ public class MainPanel implements Initializable {
 			public void handle(ActionEvent event) {
 				reciptTypeButton.setId(incomes.getId());
 				reciptTypeButton.setText(incomes.getId());
-
-
 			}
 		});
 		//---------------------- update material name -----------------
 		m_name.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Material, String>>() {
 			@Override
 			public void handle(TableColumn.CellEditEvent<Material, String> event) {
-
-
 				Material mat = event.getRowValue();
 				mat.update_material(mat.getMaterial_id(), event.getNewValue(), "mat_name");
 				Material old_material = event.getRowValue();
 				int index = data1.indexOf(old_material);
 				data1.get(index).setMaterial_name(event.getNewValue());
-
-
 			}
-
 		});
 		m_barcode.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Material, String>>() {
 			@Override
@@ -1638,8 +1493,6 @@ public class MainPanel implements Initializable {
 				Material old_material = event.getRowValue();
 				int index = data1.indexOf(old_material);
 				data1.get(index).setMaterial_barcode(event.getNewValue());
-
-
 			}
 		});
 		m_unit.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Material, String>>() {
@@ -1650,7 +1503,6 @@ public class MainPanel implements Initializable {
 				Material old_material = event.getRowValue();
 				int index = data1.indexOf(old_material);
 				data1.get(index).setMaterial_unit(event.getNewValue());
-
 			}
 		});
 		m_notes.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Material, String>>() {
@@ -1661,7 +1513,6 @@ public class MainPanel implements Initializable {
 				Material old_material = event.getRowValue();
 				int index = data1.indexOf(old_material);
 				data1.get(index).setMaterial_notes(event.getNewValue());
-
 			}
 		});
 
@@ -1672,20 +1523,15 @@ public class MainPanel implements Initializable {
 			public void handle(TableColumn.CellEditEvent<InOutStorage, String> event) {
 				try {
 					InOutStorage inout = event.getRowValue();
-
-
 					Integer.parseInt(event.getNewValue());
 					int id = InOutStorage.getid("inside_storage", "in_strg_count", 2);
 					InOutStorage.updateQuantity("inside_storage", "in_strg_count", event.getNewValue(), inout.getId_in(), "in_strg_id");
 					InOutStorage old_inout = event.getRowValue();
 					int index = in_Storage.indexOf(old_inout);
-//                data1.get(index).setMaterial_name(event.getNewValue());
 					in_Storage.get(index).setQuantity(event.getNewValue());
 
 				} catch (NumberFormatException e) {
-//                    Material.alert("Error", "الكمية يجب ان كون رقما  ", "الرجاء تغيير الكمية الى قيمة رقمية...");
 					e.printStackTrace();
-
 				}
 			}
 		});
@@ -1698,46 +1544,23 @@ public class MainPanel implements Initializable {
 				int id = InOutStorage.getid("outside_storage", "out_strg_count", 2);
 				InOutStorage old_inout = event.getRowValue();
 				int index = out_storage.indexOf(old_inout);
-
-
-//                         String query = "select id_mat from  material where mat_name ='" + mat_name_out.getText() + "'";
-//                         try {
-//                             Connection con = null;
-//                             Statement stmt = con.createStatement();
-//
-//                             ResultSet rs = stmt.executeQuery(query);
-////                             int id;
-
-
-//                             if (rs.next()) {
-//                                 id = rs.getInt("id_mat");
 				int countofmaterial = GetCountofMaterial(id);
 				System.out.println(countofmaterial);
-
 				try {
-
 					if (countofmaterial < 0 || countofmaterial + Integer.parseInt(event.getOldValue()) < Integer.parseInt(event.getNewValue())) {
 						int i = countofmaterial + Integer.parseInt(event.getOldValue());
 						Material.alert("Error", "كمية المادة لا تكفي", "لديك من هذه المادة  " + i + "وحدة");
 						out_table.refresh();
 					} else {
-
 						out_storage.get(index).setQuantity(event.getNewValue());
 						InOutStorage.updateQuantity("outside_storage", "out_strg_count", event.getNewValue(), event.getRowValue().getId_in(), "out_strg_id");
-//        out_table.refresh();
-
-
 					}
 				} catch (NumberFormatException e) {
 					Material.alert("Error", "الكمية يجب ان كون رقما  ", "الرجاء تغيير الكمية الى قيمة رقمية...");
-//    out_storage.get(index).setQuantity(event.getOldValue());
-
 				}
 			}
-
 		});
 		choose_file();
-
 	}
 //    ---------------------- choose file ------------------------------
 
@@ -1821,7 +1644,6 @@ public class MainPanel implements Initializable {
 		}
 	}
 
-
 	public void getMaxoutBoxID() {
 		Connection con = null;
 		Statement stmt = null;
@@ -1831,7 +1653,6 @@ public class MainPanel implements Initializable {
 			ResiptID1.setText("1");
 			if (con == null) {
 				con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/smarter_pos_db?useUnicode=yes&characterEncoding=UTF-8&useSSL=false", "hinet", "12345678");
-
 
 				// Create Query
 				String query = "Select Max(id_out_box ) from output_box_hdr ";
@@ -1843,10 +1664,8 @@ public class MainPanel implements Initializable {
 						int x = Integer.parseInt(result.trim());
 						ResiptID1.setText(x + 1 + "");
 						CustomName1.setText(x + 1 + "");//for resales .. this ResiptID TextBox not customerrname
-
 					}
 					con.close();
-
 				}
 			}
 		} catch (Exception ex) {
@@ -1864,8 +1683,6 @@ public class MainPanel implements Initializable {
 			ResiptID.setText("1");
 			if (con == null) {
 				con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/smarter_pos_db?useUnicode=yes&characterEncoding=UTF-8&useSSL=false", "hinet", "12345678");
-
-
 				// Create Query
 				String query = "Select Max(id_in_box) from input_box_hdr ";
 				stmt = con.createStatement();
@@ -1878,7 +1695,6 @@ public class MainPanel implements Initializable {
 						CustomName11.setText(x + 1 + ""); // ID not customer
 					}
 					con.close();
-
 				}
 			}
 		} catch (Exception ex) {
@@ -1896,7 +1712,6 @@ public class MainPanel implements Initializable {
 		for (int i = 0; i < data.size(); i++) {
 			res += Double.parseDouble(data.get(i).Total);
 		}
-
 		totalmoneytoplabel.setText(String.format("%.2f", res));
 	}
 
@@ -1905,7 +1720,6 @@ public class MainPanel implements Initializable {
 		for (int i = 0; i < Purchasesdata.size(); i++) {
 			res += Double.parseDouble(Purchasesdata.get(i).PTotal);
 		}
-
 		totalpurtoplabel.setText(String.format("%.2f", res));
 	}
 
@@ -1914,7 +1728,6 @@ public class MainPanel implements Initializable {
 		for (int i = 0; i < ReSalesdata.size(); i++) {
 			res += Double.parseDouble(ReSalesdata.get(i).PTotal);
 		}
-
 		totalmoneytoplabel1.setText(String.format("%.2f", res));
 	}
 
@@ -1923,8 +1736,6 @@ public class MainPanel implements Initializable {
 		for (int i = 0; i < RePurChases.size(); i++) {
 			res += Double.parseDouble(RePurChases.get(i).Total);
 		}
-
-
 		totalmoneytoplabel11.setText(String.format("%.2f", res));
 	}
 
@@ -1995,17 +1806,12 @@ public class MainPanel implements Initializable {
 		Statement stmt = null;
 
 		try {
-
-
 			if (con == null) {
 				con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/smarter_pos_db?useUnicode=yes&characterEncoding=UTF-8&useSSL=false", "hinet", "12345678");
-
 
 				// Create Query
 				String query = "Select id_mat from material where mat_name = '" + name + "'";
 				stmt = con.createStatement();
-
-
 				//Result
 				ResultSet set = stmt.executeQuery(query);
 				if (set.next()) {
@@ -2016,14 +1822,11 @@ public class MainPanel implements Initializable {
 					//Alreat Box For Error
 					Alert alert = new Alert(AlertType.ERROR);
 					alert.setTitle("Error");
-
 					alert.setContentText("المادة المدخلة غير موجودة ضمن قاعدة البيانات");
 					alert.showAndWait();
 					con.close();
 				}
 			}
-
-
 		} catch (Exception ex) {
 			//Alreat Box For Error
 			Alert alert = new Alert(AlertType.ERROR);
@@ -2033,7 +1836,6 @@ public class MainPanel implements Initializable {
 			alert.showAndWait();
 		}
 		return null;
-
 	}
 
 	static public String Matname2barcode(String name) {
@@ -2041,17 +1843,11 @@ public class MainPanel implements Initializable {
 		Statement stmt = null;
 
 		try {
-
-
 			if (con == null) {
 				con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/smarter_pos_db?useUnicode=yes&characterEncoding=UTF-8&useSSL=false", "hinet", "12345678");
-
-
 				// Create Query
 				String query = "Select barcode from material where mat_name = '" + name + "'";
 				stmt = con.createStatement();
-
-
 				//Result
 				ResultSet set = stmt.executeQuery(query);
 				if (set.next()) {
@@ -2068,8 +1864,6 @@ public class MainPanel implements Initializable {
 					con.close();
 				}
 			}
-
-
 		} catch (Exception ex) {
 			//Alreat Box For Error
 			Alert alert = new Alert(AlertType.ERROR);
@@ -2079,9 +1873,7 @@ public class MainPanel implements Initializable {
 			alert.showAndWait();
 		}
 		return null;
-
 	}
-
 
 	void ClearBuyForm() {
 		data.clear();
@@ -2090,19 +1882,14 @@ public class MainPanel implements Initializable {
 		CustomName.setText("");
 	}
 
-
 	void updateSales() {
 
 		Connection con = null;
 		PreparedStatement stmt = null;
-
-
 		boolean Addedheader = false;
 		try {
 			if (con == null) {
 				con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/smarter_pos_db?useUnicode=yes&characterEncoding=UTF-8&useSSL=false", "hinet", "12345678");
-
-
 				String query = "UPDATE input_box_hdr SET customer_name = '" + CustomName.getText() + "',in_box_date = '" + DateTB.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "' ,total = '" + totalmoneytoplabel.getText() + "' where id_in_box = " + ResiptID.getText();
 				stmt = con.prepareStatement(query);
 				stmt.executeUpdate();
@@ -2134,8 +1921,6 @@ public class MainPanel implements Initializable {
 			alert.setContentText("الرجاء التأكد من إدخال جميع بيانات الفاتورة.");
 			alert.showAndWait();
 		}
-
-
 	}
 
 	public void Savelist() {
@@ -2149,24 +1934,18 @@ public class MainPanel implements Initializable {
 		}
 		Connection con = null;
 		PreparedStatement stmt = null;
-
-
 		boolean Addedheader = false;
 		try {
 			if (con == null) {
 				con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/smarter_pos_db?useUnicode=yes&characterEncoding=UTF-8&useSSL=false", "hinet", "12345678");
-
-
 				// Create Query
 				String query = "Select * from input_box_hdr where id_in_box = " + ResiptID.getText();
 				Statement stmt1 = con.createStatement();
-
 				ResultSet set1 = stmt1.executeQuery(query);
 				if (set1.next()) {
 					updateSales();
 					return;
 				}
-
 				query = "INSERT INTO input_box_hdr (id_in_box ,customer_name ,in_box_date ,discount ,total ,re_purchases) VALUES (" + ResiptID.getText() + ",'" + CustomName.getText() + "','" + DateTB.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "'," + 0 + "," + totalmoneytoplabel.getText() + ", 0)";
 				stmt = con.prepareStatement(query);
 				stmt.executeUpdate();
@@ -2177,7 +1956,6 @@ public class MainPanel implements Initializable {
 					query = "INSERT INTO input_box (id_in_box  ,id_mat ,sub_discount ,mat_price ,mat_count) VALUES (" + ResiptID.getText() + "," + Matname2ID(data.get(i).Uniname) + "," + data.get(i).Discount + "," + data.get(i).Price + "," + data.get(i).QTY + ")";
 					stmt = con.prepareStatement(query);
 					stmt.executeUpdate();
-
 				}
 				Alert yesalert = new Alert(AlertType.CONFIRMATION);
 				yesalert.setTitle("Payment Status");
@@ -2195,32 +1973,22 @@ public class MainPanel implements Initializable {
 				}
 			} catch (Exception ex1) {
 			}
-
-
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
 			alert.setHeaderText("خطأ في البيانات المدخلة");
 			alert.setContentText("الرجاء التأكد من إدخال جميع بيانات الفاتورة.");
 			alert.showAndWait();
 		}
-
-
 	}
 
 	static public int GetCountofMaterial(int id_mat) {
 		int count1, count2, count3, count4;
 		count1 = count2 = count3 = count4 = 0;
-
 		Connection con = null;
 		Statement stmt = null;
-
 		try {
-
-
 			if (con == null) {
 				con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/smarter_pos_db?useUnicode=yes&characterEncoding=UTF-8&useSSL=false", "hinet", "12345678");
-
-
 				// Create Query
 				String query = "Select sum(mat_count ) from input_box where id_mat = " + id_mat;
 				stmt = con.createStatement();
@@ -2230,12 +1998,10 @@ public class MainPanel implements Initializable {
 					if (result != null)
 						count3 = Integer.parseInt(result.trim());
 				}
-
 				query = "Select sum(out_strg_count ) from outside_storage where id_mat = " + id_mat;
 				stmt = con.createStatement();
 				set = stmt.executeQuery(query);
 				if (set.next()) {
-
 					String result = set.getString(1);
 					if (result != null)
 						count4 = Integer.parseInt(result.trim());
@@ -2256,7 +2022,6 @@ public class MainPanel implements Initializable {
 					if (result != null)
 						count2 = Integer.parseInt(result.trim());
 				}
-
 				con.close();
 			}
 		} catch (Exception ex) {
@@ -2267,10 +2032,6 @@ public class MainPanel implements Initializable {
 			alert.setContentText(ex.getMessage());
 			alert.showAndWait();
 		}
-//System.out.println("c1 out "+count1);
-//System.out.println("c2 ins"+count2);
-//System.out.println("c3 in  "+count3);
-//System.out.println("c4 outs "+count4);
 		return (count1 + count2) - (count3 + count4);
 
 	}
@@ -2297,17 +2058,12 @@ public class MainPanel implements Initializable {
 	static ObservableList<PurchaseRecord> Purchasesdata = FXCollections.observableArrayList();
 
 	void updatePur() {
-
 		Connection con = null;
 		PreparedStatement stmt = null;
-
-
 		boolean Addedheader = false;
 		try {
 			if (con == null) {
 				con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/smarter_pos_db?useUnicode=yes&characterEncoding=UTF-8&useSSL=false", "hinet", "12345678");
-
-
 				String query = "UPDATE output_box_hdr SET customer_name = '" + BuyerName.getText() + "',out_box_date = '" + DateTB1.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "' ,total = '" + totalpurtoplabel.getText() + "' where id_out_box = " + ResiptID1.getText();
 				stmt = con.prepareStatement(query);
 				stmt.executeUpdate();
@@ -2318,11 +2074,9 @@ public class MainPanel implements Initializable {
 				stmt.executeUpdate();
 				for (int i = 0; i < Purchasesdata.size(); i++) {
 					// Create Query
-
 					query = "INSERT INTO output_box (id_out_box  ,id_mat ,sub_discount ,mat_price ,mat_count) VALUES (" + ResiptID1.getText() + "," + Matname2ID(Purchasesdata.get(i).PUniname) + "," + Purchasesdata.get(i).PDiscount + "," + Purchasesdata.get(i).PPrice + "," + Purchasesdata.get(i).PQTY + ")";
 					stmt = con.prepareStatement(query);
 					stmt.executeUpdate();
-
 				}
 				Alert yesalert = new Alert(AlertType.CONFIRMATION);
 				yesalert.setTitle("Payment Status");
@@ -2332,16 +2086,12 @@ public class MainPanel implements Initializable {
 				ClearBuyForm();
 			}
 		} catch (Exception ex) {
-
-
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
 			alert.setHeaderText("خطأ في البيانات المدخلة");
 			alert.setContentText("الرجاء التأكد من إدخال جميع بيانات الفاتورة.");
 			alert.showAndWait();
 		}
-
-
 	}
 
 	public void SavePurlist() {
@@ -2360,27 +2110,22 @@ public class MainPanel implements Initializable {
 		try {
 			if (con == null) {
 				con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/smarter_pos_db?useUnicode=yes&characterEncoding=UTF-8&useSSL=false", "hinet", "12345678");
-
 				String query = "Select * from output_box_hdr where id_out_box = " + ResiptID1.getText();
 				Statement stmt1 = con.createStatement();
-
 				ResultSet set1 = stmt1.executeQuery(query);
 				if (set1.next()) {
 					updatePur();
 					return;
 				}
-
 				query = "INSERT INTO output_box_hdr (id_out_box , customer_name ,out_box_date ,discount ,total ,re_sales) VALUES (" + ResiptID1.getText() + ",'" + BuyerName.getText() + "','" + DateTB1.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "'," + 0 + "," + totalpurtoplabel.getText() + ", 0)";
 				stmt = con.prepareStatement(query);
 				stmt.executeUpdate();
 				Addedheader = true;
 				for (int i = 0; i < Purchasesdata.size(); i++) {
 					// Create Query
-
 					query = "INSERT INTO output_box (id_out_box  ,id_mat ,sub_discount ,mat_price ,mat_count) VALUES (" + ResiptID1.getText() + "," + Matname2ID(Purchasesdata.get(i).PUniname) + "," + Purchasesdata.get(i).PDiscount + "," + Purchasesdata.get(i).PPrice + "," + Purchasesdata.get(i).PQTY + ")";
 					stmt = con.prepareStatement(query);
 					stmt.executeUpdate();
-
 				}
 				Alert yesalert = new Alert(AlertType.CONFIRMATION);
 				yesalert.setTitle("Payment Status");
@@ -2398,16 +2143,12 @@ public class MainPanel implements Initializable {
 				}
 			} catch (Exception ex1) {
 			}
-
-
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
 			alert.setHeaderText("خطأ في البيانات المدخلة");
 			alert.setContentText("الرجاء التأكد من إدخال جميع بيانات الفاتورة.");
 			alert.showAndWait();
 		}
-
-
 	}
 
 	void ClearPurForm() {
@@ -2421,7 +2162,6 @@ public class MainPanel implements Initializable {
 		if (CheckpurRedundunt(Uniname)) return false;
 		String matID = Matname2ID(Uniname);
 		if (matID != null) {
-
 			PurchaseRecord record = new PurchaseRecord(Uniname, QTY, Price, Discount, Bar);
 			Purchasesdata.add(record);
 		}
@@ -2456,7 +2196,6 @@ public class MainPanel implements Initializable {
 		if (CheckReSalesRedundunt(Uniname)) return false;
 		String matID = Matname2ID(Uniname);
 		if (matID != null) {
-
 			PurchaseRecord record = new PurchaseRecord(Uniname, QTY, Price, Discount, Bar);
 			ReSalesdata.add(record);
 		}
@@ -2464,17 +2203,12 @@ public class MainPanel implements Initializable {
 	}
 
 	void updateretSales() {
-
 		Connection con = null;
 		PreparedStatement stmt = null;
-
-
 		boolean Addedheader = false;
 		try {
 			if (con == null) {
 				con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/smarter_pos_db?useUnicode=yes&characterEncoding=UTF-8&useSSL=false", "hinet", "12345678");
-
-
 				String query = "UPDATE output_box_hdr SET customer_name = '" + ResiptID111.getText() + "',out_box_date = '" + DateTB11.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "' ,total = '" + totalmoneytoplabel1.getText() + "' where id_out_box = " + CustomName1.getText();
 				stmt = con.prepareStatement(query);
 				stmt.executeUpdate();
@@ -2485,11 +2219,9 @@ public class MainPanel implements Initializable {
 				Addedheader = true;
 				for (int i = 0; i < ReSalesdata.size(); i++) {
 					// Create Query
-
 					query = "INSERT INTO output_box (id_out_box  ,id_mat ,sub_discount ,mat_price ,mat_count) VALUES (" + CustomName1.getText() + "," + Matname2ID(ReSalesdata.get(i).PUniname) + "," + ReSalesdata.get(i).PDiscount + "," + ReSalesdata.get(i).PPrice + "," + ReSalesdata.get(i).PQTY + ")";
 					stmt = con.prepareStatement(query);
 					stmt.executeUpdate();
-
 				}
 				Alert yesalert = new Alert(AlertType.CONFIRMATION);
 				yesalert.setTitle("Payment Status");
@@ -2499,16 +2231,12 @@ public class MainPanel implements Initializable {
 				ClearReSalesForm();
 			}
 		} catch (Exception ex) {
-
-
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
 			alert.setHeaderText("خطأ في البيانات المدخلة");
 			alert.setContentText("الرجاء التأكد من إدخال جميع بيانات الفاتورة.");
 			alert.showAndWait();
 		}
-
-
 	}
 
 	public void retSalesSaveButtonClick() {
@@ -2522,31 +2250,26 @@ public class MainPanel implements Initializable {
 		}
 		Connection con = null;
 		PreparedStatement stmt = null;
-
 		boolean Addedheader = false;
 		try {
 			if (con == null) {
 				con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/smarter_pos_db?useUnicode=yes&characterEncoding=UTF-8&useSSL=false", "hinet", "12345678");
 				String query = "Select * from output_box_hdr where id_out_box = " + CustomName1.getText();
 				Statement stmt1 = con.createStatement();
-
 				ResultSet set1 = stmt1.executeQuery(query);
 				if (set1.next()) {
 					updateretSales();
 					return;
 				}
-
 				query = "INSERT INTO output_box_hdr (id_out_box , customer_name ,out_box_date ,discount ,total ,re_sales) VALUES (" + CustomName1.getText() + ",'" + ResiptID111.getText() + "','" + DateTB11.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "'," + 0 + "," + totalmoneytoplabel1.getText() + "," + OriginID.getText() + ")";
 				stmt = con.prepareStatement(query);
 				stmt.executeUpdate();
 				Addedheader = true;
 				for (int i = 0; i < ReSalesdata.size(); i++) {
 					// Create Query
-
 					query = "INSERT INTO output_box (id_out_box  ,id_mat ,sub_discount ,mat_price ,mat_count) VALUES (" + CustomName1.getText() + "," + Matname2ID(ReSalesdata.get(i).PUniname) + "," + ReSalesdata.get(i).PDiscount + "," + ReSalesdata.get(i).PPrice + "," + ReSalesdata.get(i).PQTY + ")";
 					stmt = con.prepareStatement(query);
 					stmt.executeUpdate();
-
 				}
 				Alert yesalert = new Alert(AlertType.CONFIRMATION);
 				yesalert.setTitle("Payment Status");
@@ -2564,16 +2287,12 @@ public class MainPanel implements Initializable {
 				}
 			} catch (Exception ex1) {
 			}
-
-
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
 			alert.setHeaderText("خطأ في البيانات المدخلة");
 			alert.setContentText("الرجاء التأكد من إدخال جميع بيانات الفاتورة.");
 			alert.showAndWait();
 		}
-
-
 	}
 
 	void ClearReSalesForm() {
@@ -2594,7 +2313,6 @@ public class MainPanel implements Initializable {
 	Label totalmoneytoplabel11;
 
 	Boolean CheckRePurRedundunt(String MatName) {
-
 		for (int i = 0; i < RePurChases.size(); i++) {
 			if (RePurChases.get(i).Uniname.matches(MatName)) {
 				Alert alert = new Alert(AlertType.ERROR);
@@ -2613,50 +2331,38 @@ public class MainPanel implements Initializable {
 		String matID = Matname2ID(Uniname);
 		if (matID != null) {
 			int stock = GetCountofMaterial(Integer.parseInt(matID));
-
 			if (stock - Integer.parseInt(QTY) < 0) {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Error");
 				alert.setHeaderText("خطأ في الكمية");
 				alert.setContentText("الكيمة المتبقية في المستودع للمادة المدخلة هي : " + stock);
 				alert.showAndWait();
-
 				QTY = stock + "";
 			}
 			OrderRecord record = new OrderRecord(Uniname, QTY, Price, Discount, Bar);
 			RePurChases.add(record);
 		}
 		return true;
-
 	}
 
 	void updateretPurch() {
-
 		Connection con = null;
 		PreparedStatement stmt = null;
-
-
 		boolean Addedheader = false;
 		try {
 			if (con == null) {
 				con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/smarter_pos_db?useUnicode=yes&characterEncoding=UTF-8&useSSL=false", "hinet", "12345678");
-
-
 				String query = "UPDATE input_box_hdr SET customer_name = '" + ResiptID11.getText() + "',in_box_date = '" + DateTB111.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "' ,total = '" + totalmoneytoplabel11.getText() + "' where id_in_box = " + CustomName11.getText();
 				stmt = con.prepareStatement(query);
 				stmt.executeUpdate();
-
 				query = "delete from input_box where id_in_box = " + CustomName11.getText();
 				stmt = con.prepareStatement(query);
 				stmt.executeUpdate();
-
 				for (int i = 0; i < RePurChases.size(); i++) {
 					// Create Query
-
 					query = "INSERT INTO input_box (id_in_box  ,id_mat ,sub_discount ,mat_price ,mat_count) VALUES (" + CustomName11.getText() + "," + Matname2ID(RePurChases.get(i).Uniname) + "," + RePurChases.get(i).Discount + "," + RePurChases.get(i).Price + "," + RePurChases.get(i).QTY + ")";
 					stmt = con.prepareStatement(query);
 					stmt.executeUpdate();
-
 				}
 				Alert yesalert = new Alert(AlertType.CONFIRMATION);
 				yesalert.setTitle("Payment Status");
@@ -2666,21 +2372,15 @@ public class MainPanel implements Initializable {
 				CleaRePurForm();
 			}
 		} catch (Exception ex) {
-
-
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
 			alert.setHeaderText("خطأ في البيانات المدخلة");
 			alert.setContentText("الرجاء التأكد من إدخال جميع بيانات الفاتورة.");
 			alert.showAndWait();
 		}
-
-
 	}
 
 	public void retPurchSaveButtonClick() {
-
-
 		if (RePurChases.size() == 0) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
@@ -2691,31 +2391,26 @@ public class MainPanel implements Initializable {
 		}
 		Connection con = null;
 		PreparedStatement stmt = null;
-
 		boolean Addedheader = false;
 		try {
 			if (con == null) {
 				con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/smarter_pos_db?useUnicode=yes&characterEncoding=UTF-8&useSSL=false", "hinet", "12345678");
 				String query = "Select * from input_box_hdr where id_in_box = " + CustomName11.getText();
 				Statement stmt1 = con.createStatement();
-
 				ResultSet set1 = stmt1.executeQuery(query);
 				if (set1.next()) {
 					updateretPurch();
 					return;
 				}
-
 				query = " INTO input_box_hdr (id_in_box ,customer_name ,in_box_date ,discount ,total ,re_purchases) VALUES (" + CustomName11.getText() + ",'" + ResiptID11.getText() + "','" + DateTB111.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "'," + 0 + "," + totalmoneytoplabel11.getText() + "," + CustomName111.getText() + ")";
 				stmt = con.prepareStatement(query);
 				stmt.executeUpdate();
 				Addedheader = true;
 				for (int i = 0; i < RePurChases.size(); i++) {
 					// Create Query
-
 					query = "INSERT INTO input_box (id_in_box  ,id_mat ,sub_discount ,mat_price ,mat_count) VALUES (" + CustomName11.getText() + "," + Matname2ID(RePurChases.get(i).Uniname) + "," + RePurChases.get(i).Discount + "," + RePurChases.get(i).Price + "," + RePurChases.get(i).QTY + ")";
 					stmt = con.prepareStatement(query);
 					stmt.executeUpdate();
-
 				}
 				Alert yesalert = new Alert(AlertType.CONFIRMATION);
 				yesalert.setTitle("Payment Status");
@@ -2733,16 +2428,12 @@ public class MainPanel implements Initializable {
 				}
 			} catch (Exception ex1) {
 			}
-
-
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
 			alert.setHeaderText("خطأ في البيانات المدخلة");
 			alert.setContentText("الرجاء التأكد من إدخال جميع بيانات الفاتورة.");
 			alert.showAndWait();
 		}
-
-
 	}
 
 	void CleaRePurForm() {
@@ -2841,10 +2532,8 @@ public class MainPanel implements Initializable {
 			alert.getDialogPane().setPrefSize(400, 200); //sets size of alert box
 			Optional<ButtonType> result = alert.showAndWait();
 			if (result.get() == ButtonType.YES) {
-
 				//yesbutton Clicked
 				Platform.exit();
-
 			} else {
 
 			}
@@ -2856,10 +2545,8 @@ public class MainPanel implements Initializable {
 					.hideAfter(Duration.seconds(5))
 					.position(Pos.TOP_RIGHT);
 			notify.show();
-
 		}
 	}
-
 
 	//--------------------------- search button-----------------
 	public void search() {
@@ -2869,25 +2556,16 @@ public class MainPanel implements Initializable {
 			if (reciptTypeButton.getId().equals("reciptTypeButton")) {
 				Material.alert("Error", "check the information", "please select type of search...");
 			}
-
 			ObservableList<TrafficSearch> trafficSearches = FXCollections.observableArrayList();
-
-
 			try {
-//
-
 				if ((!customer_tf.getText().isEmpty() || !reciptid_tf.getText().isEmpty())
 						&& (todate.getValue() == null && fromdate.getValue() == null)) {
 					String textField;
 					String where = null;
 					if (customer_tf.getText().isEmpty()) {
-
 						textField = reciptid_tf.getText();
 						String split[] = textField.split("-");
 						textField = Arrays.toString(split).substring(1, Arrays.toString(split).length() - 1);
-//                                System.out.println(Arrays.toString(split).substring(1,Arrays.toString(split).length()-1));
-
-
 						if (reciptTypeButton.getText().equals("sales")) {
 //                              where = "id_in_box =" + Integer.parseInt(textField);
 							where = "id_in_box in (" + textField + ")";
@@ -2915,18 +2593,15 @@ public class MainPanel implements Initializable {
 							String name, date;
 							double total;
 							int id;
-
 							while (rs.next()) {
 								name = rs.getString("customer_name");
 								total = rs.getDouble("total");
 								id = rs.getInt("id_in_box");
 								date = rs.getString("in_box_date");
 								trafficSearches.add(new TrafficSearch(name, id, total, date, reciptTypeButton.getText()));
-
 							}
 							//------------------------------ purchasess----------------
 						} else if (reciptTypeButton.getText().equals("purchasess")) {
-
 							query = "select output_box_hdr.customer_name , output_box_hdr.total , output_box_hdr.out_box_date , " +
 									"output_box_hdr.id_out_box from  output_box_hdr where " + where + " && re_sales =0 ";
 //                                          "  out_box_date BETWEEN '" + fromdate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "' AND '" + todate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "'";
@@ -2934,27 +2609,22 @@ public class MainPanel implements Initializable {
 							String name, date;
 							double total;
 							int id;
-
 							while (rs.next()) {
 								name = rs.getString("customer_name");
 								total = rs.getDouble("total");
 								id = rs.getInt("id_out_box");
 								date = rs.getString("out_box_date");
 								trafficSearches.add(new TrafficSearch(name, id, total, date, reciptTypeButton.getText()));
-
 							}
 
 							//------------------------------ re purchasess---------------
 						} else if (reciptTypeButton.getText().equals("purchasess_return")) {
 							query = "select input_box_hdr.customer_name , input_box_hdr.total , input_box_hdr.in_box_date , " +
 									"input_box_hdr.id_in_box from  input_box_hdr where " + where + " && re_purchases !=0 ";
-//                                          " && in_box_date BETWEEN '" + fromdate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "' AND '" + todate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "'";
-//                              System.out.println("return");
 							rs = stmt.executeQuery(query);
 							String name, date;
 							double total;
 							int id;
-
 							while (rs.next()) {
 								name = rs.getString("customer_name");
 								total = rs.getDouble("total");
@@ -2988,8 +2658,6 @@ public class MainPanel implements Initializable {
 								query = "select * from spending";
 							} else if (!customer_tf.getText().isEmpty() && reciptid_tf.getText().isEmpty()) {
 								query = "select * from spending where spending.name  like '%" + customer_tf.getText() + "%'";
-
-
 							} else if (customer_tf.getText().isEmpty() && !reciptid_tf.getText().isEmpty()) {
 								query = "select * from spending where spending.id_sp in (" + textField + ")";
 							}
@@ -2997,22 +2665,17 @@ public class MainPanel implements Initializable {
 							String name, date;
 							double total;
 							int id;
-
 							while (rs.next()) {
 								name = rs.getString("name");
 								total = rs.getDouble("amount");
 								id = rs.getInt("id_sp");
 								date = rs.getString("sp_date");
-
 								trafficSearches.add(new TrafficSearch(name, id, total, date, reciptTypeButton.getText()));
 							}
 							//------------------------incomes-------------------
 						} else if (reciptTypeButton.getText().equals("incomes")) {
-
 							if (!customer_tf.getText().isEmpty() && reciptid_tf.getText().isEmpty()) {
 								query = "select * from incomes where incomes.name ='" + customer_tf.getText() + "'";
-
-
 							} else if (customer_tf.getText().isEmpty() && !reciptid_tf.getText().isEmpty()) {
 								query = "select * from incomes where incomes.id_in =  " + reciptid_tf.getText() + "";
 							}
@@ -3020,13 +2683,11 @@ public class MainPanel implements Initializable {
 							String name, date;
 							double total;
 							int id;
-
 							while (rs.next()) {
 								name = rs.getString("name");
 								total = rs.getDouble("amount");
 								id = rs.getInt("id_in");
 								date = rs.getString("incomes_date");
-
 								trafficSearches.add(new TrafficSearch(name, id, total, date, reciptTypeButton.getText()));
 							}
 							//----------------------all--------------------
@@ -3048,7 +2709,6 @@ public class MainPanel implements Initializable {
 							String name, date;
 							double total;
 							int id;
-
 							while (rs.next()) {
 								name = rs.getString("customer_name");
 								total = rs.getDouble("total");
@@ -3068,15 +2728,12 @@ public class MainPanel implements Initializable {
 										"output_box_hdr.id_out_box from  output_box_hdr where " + where + " && re_sales =0 ";
 							}
 							rs = stmt.executeQuery(query);
-
-
 							while (rs.next()) {
 								name = rs.getString("customer_name");
 								total = rs.getDouble("total");
 								id = rs.getInt("id_out_box");
 								date = rs.getString("out_box_date");
 								trafficSearches.add(new TrafficSearch(name, id, total, date, "purchasess"));
-
 							}
 							//---------------------------re purchasess---------------------------
 							if (!reciptid_tf.getText().isEmpty() && customer_tf.getText().isEmpty()) {
@@ -3088,17 +2745,13 @@ public class MainPanel implements Initializable {
 								query = "select input_box_hdr.customer_name , input_box_hdr.total , input_box_hdr.in_box_date , " +
 										"input_box_hdr.id_in_box from  input_box_hdr where " + where + " && re_purchases !=0 ";
 							}
-
 							rs = stmt.executeQuery(query);
-
-
 							while (rs.next()) {
 								name = rs.getString("customer_name");
 								total = rs.getDouble("total");
 								id = rs.getInt("id_in_box");
 								date = rs.getString("in_box_date");
 								trafficSearches.add(new TrafficSearch(name, id, total, date, "purchasess_return"));
-
 							}
 							//--------------------------------- re sales--------------------
 							if (!reciptid_tf.getText().isEmpty() && customer_tf.getText().isEmpty()) {
@@ -3111,8 +2764,6 @@ public class MainPanel implements Initializable {
 										"output_box_hdr.id_out_box from  output_box_hdr where " + where + " && re_sales !=0";
 							}
 							rs = stmt.executeQuery(query);
-
-
 							while (rs.next()) {
 								name = rs.getString("customer_name");
 								total = rs.getDouble("total");
@@ -3146,26 +2797,20 @@ public class MainPanel implements Initializable {
 							//------------------------- incomes------------------
 							if (!customer_tf.getText().isEmpty() && reciptid_tf.getText().isEmpty()) {
 								query = "select * from incomes where incomes.name like'%" + customer_tf.getText() + "%'";
-
-
 							} else if (customer_tf.getText().isEmpty() && !reciptid_tf.getText().isEmpty()) {
 								query = "select * from incomes where incomes.id_in in (" + textField + ")";
 							} else {
 								query = "select * from incomes where incomes.name like'%" + customer_tf.getText() + "%'";
 							}
 							rs = stmt.executeQuery(query);
-
-
 							while (rs.next()) {
 								name = rs.getString("name");
 								total = rs.getDouble("amount");
 								id = rs.getInt("id_in");
 								date = rs.getString("incomes_date");
-
 								trafficSearches.add(new TrafficSearch(name, id, total, date, "incomes"));
 							}
 						}
-
 						searchtraffictable.setItems(trafficSearches);
 
 					} catch (ClassNotFoundException e) {
@@ -3209,18 +2854,15 @@ public class MainPanel implements Initializable {
 							String name, date;
 							double total;
 							int id;
-
 							while (rs.next()) {
 								name = rs.getString("customer_name");
 								total = rs.getDouble("total");
 								id = rs.getInt("id_in_box");
 								date = rs.getString("in_box_date");
 								trafficSearches.add(new TrafficSearch(name, id, total, date, reciptTypeButton.getText()));
-
 							}
 							//------------------------------ purchasess----------------
 						} else if (reciptTypeButton.getText().equals("purchasess")) {
-
 							query = "select output_box_hdr.customer_name , output_box_hdr.total , output_box_hdr.out_box_date , " +
 									"output_box_hdr.id_out_box from  output_box_hdr where " + where + " && re_sales =0 &&" +
 									"  out_box_date BETWEEN '" + fromdate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "' AND '" + todate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "'";
@@ -3228,34 +2870,28 @@ public class MainPanel implements Initializable {
 							String name, date;
 							double total;
 							int id;
-
 							while (rs.next()) {
 								name = rs.getString("customer_name");
 								total = rs.getDouble("total");
 								id = rs.getInt("id_out_box");
 								date = rs.getString("out_box_date");
 								trafficSearches.add(new TrafficSearch(name, id, total, date, reciptTypeButton.getText()));
-
 							}
-
 							//------------------------------ re purchasess---------------
 						} else if (reciptTypeButton.getText().equals("purchasess_return")) {
 							query = "select input_box_hdr.customer_name , input_box_hdr.total , input_box_hdr.in_box_date , " +
 									"input_box_hdr.id_in_box from  input_box_hdr where " + where + " && re_purchases !=0 " +
 									" && in_box_date BETWEEN '" + fromdate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "' AND '" + todate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "'";
-
 							rs = stmt.executeQuery(query);
 							String name, date;
 							double total;
 							int id;
-
 							while (rs.next()) {
 								name = rs.getString("customer_name");
 								total = rs.getDouble("total");
 								id = rs.getInt("id_in_box");
 								date = rs.getString("in_box_date");
 								trafficSearches.add(new TrafficSearch(name, id, total, date, reciptTypeButton.getText()));
-
 							}
 							//------------------------re sales------------------------
 						} else if (reciptTypeButton.getText().equals("sales_return")) {
@@ -3266,7 +2902,6 @@ public class MainPanel implements Initializable {
 							String name, date;
 							double total;
 							int id;
-
 							while (rs.next()) {
 								name = rs.getString("customer_name");
 								total = rs.getDouble("total");
@@ -3278,7 +2913,6 @@ public class MainPanel implements Initializable {
 
 						} else if (reciptTypeButton.getText().equals("expenses")) {
 							if (customer_tf.getText().equals("*")) {
-
 								query = "select * from spending";
 							} else if (!customer_tf.getText().isEmpty() && reciptid_tf.getText().isEmpty()) {
 								query = "select * from spending where spending.name  like '%" + customer_tf.getText() + "%'";
@@ -3291,13 +2925,11 @@ public class MainPanel implements Initializable {
 							String name, date;
 							double total;
 							int id;
-
 							while (rs.next()) {
 								name = rs.getString("name");
 								total = rs.getDouble("amount");
 								id = rs.getInt("id_sp");
 								date = rs.getString("sp_date");
-
 								trafficSearches.add(new TrafficSearch(name, id, total, date, reciptTypeButton.getText()));
 							}
 							//------------------------incomes-------------------
@@ -3305,8 +2937,6 @@ public class MainPanel implements Initializable {
 
 							if (!customer_tf.getText().isEmpty() && reciptid_tf.getText().isEmpty()) {
 								query = "select * from incomes where incomes.name ='" + customer_tf.getText() + "'";
-
-
 							} else if (customer_tf.getText().isEmpty() && !reciptid_tf.getText().isEmpty()) {
 								query = "select * from incomes where incomes.id_in in(" + textField + ")";
 							}
@@ -3314,13 +2944,11 @@ public class MainPanel implements Initializable {
 							String name, date;
 							double total;
 							int id;
-
 							while (rs.next()) {
 								name = rs.getString("name");
 								total = rs.getDouble("amount");
 								id = rs.getInt("id_in");
 								date = rs.getString("incomes_date");
-
 								trafficSearches.add(new TrafficSearch(name, id, total, date, reciptTypeButton.getText()));
 							}
 							//----------------------all--------------------
@@ -3335,7 +2963,6 @@ public class MainPanel implements Initializable {
 								query = "select input_box_hdr.customer_name , input_box_hdr.total , input_box_hdr.in_box_date , " +
 										"input_box_hdr.id_in_box from  input_box_hdr where " + where + " &&  re_purchases =0" +
 										" && in_box_date BETWEEN '" + fromdate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "' AND '" + todate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "'";
-
 							}
 							rs = stmt.executeQuery(query);
 							String name, date;
@@ -3360,20 +2987,14 @@ public class MainPanel implements Initializable {
 								query = "select output_box_hdr.customer_name , output_box_hdr.total , output_box_hdr.out_box_date , " +
 										"output_box_hdr.id_out_box from  output_box_hdr where " + where + " && re_sales =0 &&" +
 										"  out_box_date BETWEEN '" + fromdate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "' AND '" + todate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "'";
-
 							}
 							rs = stmt.executeQuery(query);
-//                          String name,date;
-//                          double total;
-//                          int id;
-
 							while (rs.next()) {
 								name = rs.getString("customer_name");
 								total = rs.getDouble("total");
 								id = rs.getInt("id_out_box");
 								date = rs.getString("out_box_date");
 								trafficSearches.add(new TrafficSearch(name, id, total, date, "purchasess"));
-
 							}
 							//---------------------------re purchasess---------------------------
 							if (customer_tf.getText().isEmpty() && !reciptid_tf.getText().isEmpty()) {
@@ -3385,19 +3006,14 @@ public class MainPanel implements Initializable {
 								query = "select input_box_hdr.customer_name , input_box_hdr.total , input_box_hdr.in_box_date , " +
 										"input_box_hdr.id_in_box from  input_box_hdr where " + where + " && re_purchases !=0 " +
 										" && in_box_date BETWEEN '" + fromdate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "' AND '" + todate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "'";
-
 							}
-//
 							rs = stmt.executeQuery(query);
-
-
 							while (rs.next()) {
 								name = rs.getString("customer_name");
 								total = rs.getDouble("total");
 								id = rs.getInt("id_in_box");
 								date = rs.getString("in_box_date");
 								trafficSearches.add(new TrafficSearch(name, id, total, date, "purchasess_return"));
-
 							}
 							//--------------------------------- re sales--------------------
 							if (customer_tf.getText().isEmpty() && !reciptid_tf.getText().isEmpty()) {
@@ -3409,13 +3025,8 @@ public class MainPanel implements Initializable {
 								query = "select output_box_hdr.customer_name , output_box_hdr.total , output_box_hdr.out_box_date , " +
 										"output_box_hdr.id_out_box from  output_box_hdr where " + where + " && re_sales !=0" +
 										" && out_box_date BETWEEN '" + fromdate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "' AND '" + todate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "'";
-
 							}
 							rs = stmt.executeQuery(query);
-//                          String name,date;
-//                          double total;
-//                          int id;
-
 							while (rs.next()) {
 								name = rs.getString("customer_name");
 								total = rs.getDouble("total");
@@ -3435,31 +3046,22 @@ public class MainPanel implements Initializable {
 								query = "select * from spending where spending.name like '%" + customer_tf.getText() + "%'";
 							}
 							rs = stmt.executeQuery(query);
-//                          String name,date;
-//                          double total;
-
 							while (rs.next()) {
 								name = rs.getString("name");
 								total = rs.getDouble("amount");
 								id = rs.getInt("id_sp");
 								date = rs.getString("sp_date");
-
 								trafficSearches.add(new TrafficSearch(name, id, total, date, "expenses"));
 							}
 							//------------------------- incomes------------------
 							if (!customer_tf.getText().isEmpty() && reciptid_tf.getText().isEmpty()) {
 								query = "select * from incomes where incomes.name like'%" + customer_tf.getText() + "%'";
-
-
 							} else if (customer_tf.getText().isEmpty() && !reciptid_tf.getText().isEmpty()) {
 								query = "select * from incomes where incomes.id_in in(" + textField + ")";
-
 							} else {
 								query = "select * from incomes where incomes.name like'%" + customer_tf.getText() + "%'";
 							}
 							rs = stmt.executeQuery(query);
-
-
 							while (rs.next()) {
 								name = rs.getString("name");
 								total = rs.getDouble("amount");
@@ -3469,9 +3071,7 @@ public class MainPanel implements Initializable {
 								trafficSearches.add(new TrafficSearch(name, id, total, date, "incomes"));
 							}
 						}
-
 						searchtraffictable.setItems(trafficSearches);
-
 					} catch (ClassNotFoundException e) {
 						e.printStackTrace();
 					} catch (SQLException e) {
@@ -3480,10 +3080,7 @@ public class MainPanel implements Initializable {
 					} catch (NullPointerException e) {
 						Material.alert("Error", "Error", "Please Select Once of MenuButton");
 					}
-
 				}
-
-
 				//--------------------------- empty texts---------------
 
 				else if ((customer_tf.getText().isEmpty() && reciptid_tf.getText().isEmpty())) {
@@ -3527,14 +3124,12 @@ public class MainPanel implements Initializable {
 							String name, date;
 							double total;
 							int id;
-
 							while (rs.next()) {
 								name = rs.getString("customer_name");
 								total = rs.getDouble("total");
 								id = rs.getInt("id_in_box");
 								date = rs.getString("in_box_date");
 								trafficSearches.add(new TrafficSearch(name, id, total, date, reciptTypeButton.getText()));
-
 							}
 							//------------------------------ purchasess----------------
 						} else if (reciptTypeButton.getText().equals("purchasess")) {
@@ -3546,7 +3141,6 @@ public class MainPanel implements Initializable {
 								query = "select output_box_hdr.customer_name , output_box_hdr.total , output_box_hdr.out_box_date , " +
 										"output_box_hdr.id_out_box from  output_box_hdr where   re_sales =0 &&" +
 										"  out_box_date BETWEEN '" + fromdate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "' AND '" + todate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "'";
-
 							}
 							rs = stmt.executeQuery(query);
 							String name, date;
@@ -3559,9 +3153,7 @@ public class MainPanel implements Initializable {
 								id = rs.getInt("id_out_box");
 								date = rs.getString("out_box_date");
 								trafficSearches.add(new TrafficSearch(name, id, total, date, reciptTypeButton.getText()));
-
 							}
-
 							//------------------------------ re purchasess---------------
 						} else if (reciptTypeButton.getText().equals("purchasess_return")) {
 							if (fromdate.getValue() == null && todate.getValue() == null) {
@@ -3650,7 +3242,6 @@ public class MainPanel implements Initializable {
 
 							}
 
-
 							rs = stmt.executeQuery(query);
 							String name, date;
 							double total;
@@ -3724,35 +3315,24 @@ public class MainPanel implements Initializable {
 										" && in_box_date BETWEEN '" + fromdate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "' AND '" + todate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "'";
 
 							}
-//
 							rs = stmt.executeQuery(query);
-
-
 							while (rs.next()) {
 								name = rs.getString("customer_name");
 								total = rs.getDouble("total");
 								id = rs.getInt("id_in_box");
 								date = rs.getString("in_box_date");
 								trafficSearches.add(new TrafficSearch(name, id, total, date, "purchasess_return"));
-
 							}
 							//--------------------------------- re sales--------------------
 							if (fromdate.getValue() == null && todate.getValue() == null) {
 								query = "select output_box_hdr.customer_name , output_box_hdr.total , output_box_hdr.out_box_date , " +
 										"output_box_hdr.id_out_box from  output_box_hdr where  re_sales !=0";
-//                                    " && out_box_date BETWEEN '" + fromdate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "' AND '" + todate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "'";
-
 							} else {
 								query = "select output_box_hdr.customer_name , output_box_hdr.total , output_box_hdr.out_box_date , " +
 										"output_box_hdr.id_out_box from  output_box_hdr where  re_sales !=0" +
 										" && out_box_date BETWEEN '" + fromdate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "' AND '" + todate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "'";
-
 							}
 							rs = stmt.executeQuery(query);
-//                          String name,date;
-//                          double total;
-//                          int id;
-
 							while (rs.next()) {
 								name = rs.getString("customer_name");
 								total = rs.getDouble("total");
@@ -3771,9 +3351,6 @@ public class MainPanel implements Initializable {
 								;
 							}
 							rs = stmt.executeQuery(query);
-//                          String name,date;
-//                          double total;
-
 							while (rs.next()) {
 								name = rs.getString("name");
 								total = rs.getDouble("amount");
@@ -3790,10 +3367,7 @@ public class MainPanel implements Initializable {
 										" where incomes_date BETWEEN '" + fromdate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "' AND '" + todate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "'";
 
 							}
-//                        System.out.println(query);
 							rs = stmt.executeQuery(query);
-
-
 							while (rs.next()) {
 								name = rs.getString("name");
 								total = rs.getDouble("amount");
@@ -3803,9 +3377,7 @@ public class MainPanel implements Initializable {
 								trafficSearches.add(new TrafficSearch(name, id, total, date, "incomes"));
 							}
 						}
-
 						searchtraffictable.setItems(trafficSearches);
-
 					} catch (ClassNotFoundException e) {
 						e.printStackTrace();
 					} catch (SQLException e) {
@@ -3815,8 +3387,6 @@ public class MainPanel implements Initializable {
 						Material.alert("Error", "Error", "Please Select Once of MenuButton");
 					}
 				}
-
-
 			} catch (NullPointerException e) {
 				e.printStackTrace();
 //                  Material.alert("Error","Error","Please fill the dates");
@@ -3836,27 +3406,20 @@ public class MainPanel implements Initializable {
 	public void showStatistices() {
 		System.out.println(Statistices.getsales(st_datefrom.getValue(), st_dateto.getValue()));
 		System.out.println(Statistices.getpurchasess(st_datefrom.getValue(), st_dateto.getValue()));
-
 	}
 
-
-//    -----------------------test-------------
-
+	//    -----------------------test-------------
 	@FXML
 	JFXButton settingsBackupButton = new JFXButton();
 	@FXML
 	JFXButton settingsRestoreButton = new JFXButton();
 
-
 	public void choose_file() {
 		//        ----------------------choose file ----------------------------
-
-
 		settingsBackupButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				Backup.Backupdbtosql();
-
 			}
 		});
 
@@ -3871,21 +3434,15 @@ public class MainPanel implements Initializable {
 					FileChooser.ExtensionFilter extFilter = new
 							FileChooser.ExtensionFilter("ALL files (*.*)", "*.*");
 					fileChooser.getExtensionFilters().add(extFilter);
-
 					//Show open file dialog
 					file = fileChooser.showOpenDialog(null);
-
 					String pathsInfo = "";
 					try {
 						pathsInfo += file.getPath() + "\n";
 					} catch (NullPointerException e) {
-
-
 					}
 					path = pathsInfo;
-
 					Backup.importdbtosql(path);
-
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -3909,9 +3466,7 @@ public class MainPanel implements Initializable {
 	TableColumn sh_quantity = new TableColumn();
 
 	public void materialinventorysearch() {
-
 		searchmaterialtableview.getItems().clear();
-
 		Connection con;
 		Statement stmt;
 		ResultSet rs;
@@ -3921,8 +3476,6 @@ public class MainPanel implements Initializable {
 			stmt = con.createStatement();
 			if (!matnamesearch.getText().isEmpty()) {
 				String query = "Select * from material where mat_name = '" + matnamesearch.getText() + "'";
-
-
 				rs = stmt.executeQuery(query);
 				String idmat = null, matname = null;
 				if (rs.next()) {
@@ -3932,18 +3485,11 @@ public class MainPanel implements Initializable {
 					} else {
 						Material.alert("Error", "No Material found", "Please check the material name ");
 					}
-
 				}
-
 				in_Storage.add(new InOutStorage(idmat, matname, null, GetCountofMaterial(Integer.parseInt(idmat)) + ""));
-
 				searchmaterialtableview.setItems(in_Storage);
 			} else if (matnamesearch.getText().isEmpty()) {
-
-
 				String query = "Select * from material ";
-
-
 				rs = stmt.executeQuery(query);
 				String idmat = null, matname = null;
 				while (rs.next()) {
@@ -3951,8 +3497,6 @@ public class MainPanel implements Initializable {
 					matname = rs.getString(2);
 					in_Storage.add(new InOutStorage(idmat, matname, null, GetCountofMaterial(Integer.parseInt(idmat)) + ""));
 				}
-
-
 				searchmaterialtableview.setItems(in_Storage);
 			}
 
@@ -3961,19 +3505,12 @@ public class MainPanel implements Initializable {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
-
-
 	// ------------ ----------------------------------------------------------------Printing Inovice  ----------------------------------------------------------------------------------
-
-
 	// ---------------------------------------------------------------------------- Print Sales Invoice --------------------------------------------------------------------------------
 
 	public void salesPrint() throws IOException, Exception {
 		String label = "فاتورة مبيعات";
-
-
 		try {
 			Alert alert = new Alert(AlertType.CONFIRMATION, "", ButtonType.YES, ButtonType.NO);  //new alert object
 			alert.setTitle("Confirmation");  //warning box title
@@ -3985,7 +3522,6 @@ public class MainPanel implements Initializable {
 				//yesbutton Clicked
 
 				new OrderPrinting(1, label, DateTB.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), CustomName.getText(), ResiptID.getText(), "", totalmoneytoplabel.getText());
-
 				if (data.size() == 0) {
 					Alert alert2 = new Alert(AlertType.ERROR);
 					alert2.setTitle("Error");
@@ -3996,13 +3532,10 @@ public class MainPanel implements Initializable {
 				}
 				Connection con = null;
 				PreparedStatement stmt = null;
-
-
 				boolean Addedheader = false;
 				try {
 					if (con == null) {
 						con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/smarter_pos_db?useUnicode=yes&characterEncoding=UTF-8&useSSL=false", "hinet", "12345678");
-
 						// Create Query
 						String query = "Select * from input_box_hdr where id_in_box = " + ResiptID.getText();
 						Statement stmt1 = con.createStatement();
@@ -4012,20 +3545,16 @@ public class MainPanel implements Initializable {
 							updateSales();
 							return;
 						}
-
 						query = "INSERT INTO input_box_hdr (id_in_box ,customer_name ,in_box_date ,discount ,total ,re_purchases) VALUES (" + ResiptID.getText() + ",'" + CustomName.getText() + "','" + DateTB.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "'," + 0 + "," + totalmoneytoplabel.getText() + ", 0)";
 						stmt = con.prepareStatement(query);
 						stmt.executeUpdate();
 						Addedheader = true;
 						for (int i = 0; i < data.size(); i++) {
 							// Create Query
-
 							query = "INSERT INTO input_box (id_in_box  ,id_mat ,sub_discount ,mat_price ,mat_count) VALUES (" + ResiptID.getText() + "," + Matname2ID(data.get(i).Uniname) + "," + data.get(i).Discount + "," + data.get(i).Price + "," + data.get(i).QTY + ")";
 							stmt = con.prepareStatement(query);
 							stmt.executeUpdate();
-
 						}
-
 					}
 				} catch (Exception ex) {
 					try {
@@ -4188,26 +3717,20 @@ public class MainPanel implements Initializable {
 			while (rs.next()) {
 				if (!autocomplete.contains(rs.getString("customer_name")))
 					autocomplete.add(rs.getString("customer_name"));
-
 			}
-
 			query = "select customer_name  from  output_box_hdr ";
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(query);
 			while (rs.next()) {
 				if (!autocomplete.contains(rs.getString("customer_name")))
 					autocomplete.add(rs.getString("customer_name"));
-
 			}
-
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		TextFields.bindAutoCompletion(name, autocomplete);
-
 	}
 
 
@@ -4220,8 +3743,5 @@ public class MainPanel implements Initializable {
 	public void showCustomerButton() {
 		addcustomerborder.setVisible(false);
 		showcustomerborder.setVisible(true);
-
 	}
-
-
 }

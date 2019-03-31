@@ -28,7 +28,6 @@ import java.util.ResourceBundle;
 
 public class Controller {
 	ResourceBundle bundle;
-
 	@FXML
 	TextField usertext, passtext;
 	@FXML
@@ -39,34 +38,28 @@ public class Controller {
 	// ---------------- Close Login Dialog Function ---------------
 	@FXML
 	public void closeLoginWindow() {
-
 		Stage stage = (Stage) loginButton.getScene().getWindow();
 		stage.close();
 	}
-	// ---------------- end of Close Login Dialog Function ---------------
 
+	// ---------------- end of Close Login Dialog Function ---------------
 	//-------------------Login check  Function  ---------------------
 	public void doConnection() throws SQLException, IOException {
 
 		Connection con = null;
 		PreparedStatement stmt = null;
 		String query = "";
-
 		try {
-
 			//get data from user
 			String user = usertext.getText();
 			String pass = passtext.getText();
-
 			// Create Query
 			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/smarter_pos_db?useUnicode=yes&characterEncoding=UTF-8&useSSL=false", "hinet", "12345678");
 			query = "Select * from users where username=?  and pass_word=?";
-
 			//connection.DBConnection(con,query);
 			stmt = con.prepareStatement(query);
 			stmt.setString(1, user);
 			stmt.setString(2, pass);
-
 			//Result
 			ResultSet set = stmt.executeQuery();
 			if (set.next()) {
@@ -95,26 +88,6 @@ public class Controller {
 			alert.setContentText(ex.getMessage());
 			alert.showAndWait();
 		}
-
-
 	}
-
-    /*@Override
-    public void initialize(URL location, ResourceBundle resources) {
-        bundle=resources;
-        String res=bundle.getString("label1");
-      //  user.setText(bundle.getString("label1"));
-        try {
-            res=new String(res.getBytes("UTF-8"), "ISO-8859-6");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        user.setText(res);
-
-    }*/
-
-
-	//------------------- end of Login check  Function  ---------------------
-
 }
 

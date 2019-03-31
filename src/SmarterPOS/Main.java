@@ -1,27 +1,26 @@
 package SmarterPOS;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.IOException;
-import java.util.Enumeration;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class Main extends Application {
+	Security instance = new Security();
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-      /*  security s=new security();
-       if( !s.CheckSerialNumber("disk1s1")){
-           return;
-         }
-      */
+		/**
+		 *    Security Check
+		 */
+		if (!instance.CheckSerial()) {
+			return;
+		}
 		ResourceBundle resources = ResourceBundle.getBundle("translations", new Locale("ar", "JO"));
 		Parent root = FXMLLoader.load(getClass().getResource("/Layout/Login.fxml"), resources);
 		Stage stage = new Stage();
@@ -30,9 +29,11 @@ public class Main extends Application {
 		stage.setScene(loginscene);
 		stage.show();
 	}
+
 	public static void main(String[] args) {
 		launch(args);
 	}
+
 	// ------- Initializing  MAIN Panel --------
 	public void doMainPage() throws IOException {
 
@@ -76,6 +77,7 @@ public class Main extends Application {
 		stage.setScene(retaddscene);
 		stage.show();
 	}
+
 	// ------- Initializing Return Purchases Add Panel --------
 	public void doRetPurchAddWindow() throws IOException {
 		ResourceBundle resources = ResourceBundle.getBundle("translations", new Locale("en", "UK"));
